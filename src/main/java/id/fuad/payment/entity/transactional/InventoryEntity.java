@@ -2,12 +2,16 @@ package id.fuad.payment.entity.transactional;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigInteger;
 
-@Data
-@Entity
-@Table(name = "inventory")
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity(name = "inventory")
 public class InventoryEntity {
     @Id
     @Column(name = "item_id")

@@ -22,10 +22,14 @@ public class InventoryController extends ControllerBase {
     InventoryService inventoryService;
 
     @GetMapping
-    ResponseEntity<BaseResponseDto<PaginationDto<List<InventoryDto>>>> getInventory(
+    ResponseEntity<BaseResponseDto<PaginationDto<List<InventoryDto>>>> getInventoryListPagination(
             @RequestParam(defaultValue = "1", name="page") Integer page,
             @RequestParam(defaultValue = "10", name="pageSize") Integer pageSize
     ) {
-        return response(inventoryService.getInventory(page, pageSize), HttpStatus.OK);
+        return response(
+                inventoryService.getInventoryPagination(page, pageSize),
+                HttpStatus.OK,
+                "Sucess get inventory list pagination"
+        );
     }
 }

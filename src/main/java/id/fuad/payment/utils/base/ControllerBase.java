@@ -8,13 +8,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 public class ControllerBase {
-    public <T> ResponseEntity<BaseResponseDto<T>> response(T data, HttpStatus httpStatus) {
+    public <T> ResponseEntity<BaseResponseDto<T>> response(T data, HttpStatus httpStatus, String...message) {
         HttpHeaders header = new HttpHeaders();
         header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+
+        String messageJoin;
+
+        if (message.length <= 0) {
+            messageJoin = null;
+        } else {
+            messageJoin = String.join(" ", message);
+        }
 
         MetaResponseDto metaResponse = MetaResponseDto.builder()
                 .statusCode(httpStatus.value())
                 .statusCodeText(httpStatus.getReasonPhrase())
+                .message(messageJoin)
                 .build();
 
         BaseResponseDto<T> baseResponse = BaseResponseDto.<T>builder()

@@ -1,11 +1,15 @@
 package id.fuad.payment.entity.masterdata;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity(name = "payment_type")
-@Data
 public class PaymentTypeEntity {
     @Id
     @Column(name = "payment_type_id")

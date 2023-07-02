@@ -9,6 +9,9 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class MetaResponseDto {
+    @JsonProperty("message")
+    String message;
+
     @JsonProperty("status_code")
     Integer statusCode;
 

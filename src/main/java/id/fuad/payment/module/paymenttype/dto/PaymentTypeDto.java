@@ -8,7 +8,7 @@ import lombok.extern.jackson.Jacksonized;
 @Data
 @Builder
 @Jacksonized
-public class PaymentMethodDto {
+public class PaymentTypeDto {
     @JsonProperty("payment_type_id")
     Long id;
 

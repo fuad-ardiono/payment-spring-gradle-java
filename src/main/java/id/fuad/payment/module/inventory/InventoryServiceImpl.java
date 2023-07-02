@@ -18,7 +18,7 @@ public class InventoryServiceImpl implements InventoryService {
     InventoryRepository inventoryRepository;
 
     @Override
-    public PaginationDto<List<InventoryDto>> getInventory(Integer page, Integer pageSize) {
+    public PaginationDto<List<InventoryDto>> getInventoryPagination(Integer page, Integer pageSize) {
         Page<InventoryEntity> paymentMethodPage = inventoryRepository
                 .findUsingPageable(PageRequest.of(page - 1, pageSize));
 

@@ -1,25 +1,28 @@
 package id.fuad.payment.entity.transactional;
 
+import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigInteger;
 
-@Data
-@Entity
-@Table(name = "payment")
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity(name = "payment")
 public class PaymentEntity {
     @Id
-    @Column(name = "item_id")
+    @Column(name = "payment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "item_name")
-    String itemName;
+    @Column(name = "amount")
+    BigInteger amount;
 
-    @Column(name = "quantity")
-    Integer quantity;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="payment_type_id", referencedColumnName = "payment_type_id")
+    PaymentTypeEntity paymentType;
 
-    @Column(name = "price")
-    BigInteger price;
+    @Column(name = "customer_id")
+    Long customerId;
 }

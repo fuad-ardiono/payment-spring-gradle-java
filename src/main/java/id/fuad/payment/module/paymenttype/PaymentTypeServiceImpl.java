@@ -3,7 +3,7 @@ package id.fuad.payment.module.paymenttype;
 import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.dto.PaginationMetaDto;
 import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
-import id.fuad.payment.module.paymenttype.dto.PaymentMethodDto;
+import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
 import id.fuad.payment.repository.masterdata.PaymentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +19,12 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     private PaymentTypeRepository paymentMethodRepository;
 
     @Override
-    public PaginationDto<List<PaymentMethodDto>> getPaymentMethod(Integer page, Integer pageSize) {
+    public PaginationDto<List<PaymentTypeDto>> getPaymentTypePagination(Integer page, Integer pageSize) {
         Page<PaymentTypeEntity> paymentMethodPage = paymentMethodRepository
                 .findUsingPageable(PageRequest.of(page - 1, pageSize));
 
-        List<PaymentMethodDto> listPaymentMethodDto = paymentMethodPage.stream().map(item ->
-                PaymentMethodDto
+        List<PaymentTypeDto> listPaymentMethodDto = paymentMethodPage.stream().map(item ->
+                PaymentTypeDto
                         .builder()
                         .id(item.getId())
                         .type(item.getTypeName())
@@ -38,7 +38,7 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
                 .totalRecord(paymentMethodPage.getTotalElements())
                 .build();
 
-        return PaginationDto.<List<PaymentMethodDto>>builder()
+        return PaginationDto.<List<PaymentTypeDto>>builder()
                 .paginationData(listPaymentMethodDto)
                 .paginationMeta(paginationMeta)
                 .build();
