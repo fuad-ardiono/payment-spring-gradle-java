@@ -2,9 +2,9 @@ package id.fuad.payment.module.paymenttype;
 
 import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.dto.PaginationMetaDto;
-import id.fuad.payment.entity.PaymentTypeEntity;
+import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
 import id.fuad.payment.module.paymenttype.dto.PaymentMethodDto;
-import id.fuad.payment.repository.PaymentTypeRepository;
+import id.fuad.payment.repository.masterdata.PaymentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

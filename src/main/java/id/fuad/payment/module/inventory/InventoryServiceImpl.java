@@ -2,11 +2,9 @@ package id.fuad.payment.module.inventory;
 
 import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.dto.PaginationMetaDto;
-import id.fuad.payment.entity.InventoryEntity;
-import id.fuad.payment.entity.PaymentTypeEntity;
+import id.fuad.payment.entity.transactional.InventoryEntity;
 import id.fuad.payment.module.inventory.dto.InventoryDto;
-import id.fuad.payment.module.paymenttype.dto.PaymentMethodDto;
-import id.fuad.payment.repository.InventoryRepository;
+import id.fuad.payment.repository.transactional.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

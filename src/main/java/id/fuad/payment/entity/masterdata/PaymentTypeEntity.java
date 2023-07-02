@@ -1,4 +1,4 @@
-package id.fuad.payment.entity;
+package id.fuad.payment.entity.masterdata;
 
 import jakarta.persistence.*;
 import lombok.Data;
