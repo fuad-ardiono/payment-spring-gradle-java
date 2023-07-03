@@ -4,7 +4,7 @@ services:
     image: postgres:14.8
     container_name: assignment-db
     volumes:
-      - ./docker/postgres/initdb.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./infrastructure/postgres/initdb.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_PASSWORD: password
     ports:
