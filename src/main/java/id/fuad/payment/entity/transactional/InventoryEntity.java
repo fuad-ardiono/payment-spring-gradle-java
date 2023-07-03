@@ -1,7 +1,6 @@
 package id.fuad.payment.entity.transactional;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

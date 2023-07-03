@@ -61,7 +61,7 @@ public class PaymentValidator {
         boolean payment = paymentRepository.existsById(paymentId);
 
         if (!payment) {
-            validationBase.addErrorPathVariable(":paymentId", IssueConstant.NOT_MATCH);
+            validationBase.addErrorPathVariable("paymentId", IssueConstant.NOT_MATCH);
         }
 
         validationBase.raiseError();

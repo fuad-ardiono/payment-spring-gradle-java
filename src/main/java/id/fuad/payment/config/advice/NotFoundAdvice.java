@@ -3,7 +3,6 @@ package id.fuad.payment.config.advice;
 import id.fuad.payment.dto.BaseResponseDto;
 import id.fuad.payment.dto.MetaResponseDto;
 import id.fuad.payment.exception.NotFoundException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class NotFoundAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {NotFoundException.class})
-    public ResponseEntity<?> dataNotFoundExceptionHandling(Exception exception, WebRequest request) {
+    public ResponseEntity<BaseResponseDto<?>> dataNotFoundExceptionHandling(Exception exception, WebRequest request) {
         MetaResponseDto metaResponseDto = MetaResponseDto
                 .builder()
                 .statusCode(HttpStatus.NOT_FOUND.value())

@@ -20,7 +20,7 @@ public record ValidationBase(ArrayList<ErrorBagDto> errorBagDtos) {
 
     public void addErrorPathVariable(String pathVariable, IssueConstant issue) {
         ErrorBagDto error = ErrorBagDto.builder()
-                .pathVariable(pathVariable)
+                .pathVariable(":" + pathVariable)
                 .issue(issue.name())
                 .build();
 

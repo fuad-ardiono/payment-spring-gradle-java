@@ -16,11 +16,11 @@ import java.util.List;
 public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     @Autowired
-    private PaymentTypeRepository paymentMethodRepository;
+    private PaymentTypeRepository paymentTypeRepository;
 
     @Override
     public PaginationDto<List<PaymentTypeDto>> getPaymentTypePagination(Integer page, Integer pageSize) {
-        Page<PaymentTypeEntity> paymentMethodPage = paymentMethodRepository
+        Page<PaymentTypeEntity> paymentMethodPage = paymentTypeRepository
                 .findUsingPageable(PageRequest.of(page - 1, pageSize));
 
         List<PaymentTypeDto> listPaymentMethodDto = paymentMethodPage.stream().map(item ->

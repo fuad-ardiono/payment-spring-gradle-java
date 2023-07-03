@@ -2,7 +2,9 @@ package id.fuad.payment.entity.transactional;
 
 import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigInteger;
 

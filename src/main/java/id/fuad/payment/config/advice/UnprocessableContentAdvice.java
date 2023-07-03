@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class UnprocessableContentAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {UnprocessableContentException.class})
-    public ResponseEntity<?> unprocessableContentExceptionHandling(UnprocessableContentException exception, WebRequest request) {
+    public ResponseEntity<BaseResponseDto<?>> unprocessableContentExceptionHandling(UnprocessableContentException exception, WebRequest request) {
         MetaResponseDto metaResponseDto = MetaResponseDto
                 .builder()
                 .statusCode(HttpStatus.UNPROCESSABLE_ENTITY.value())
