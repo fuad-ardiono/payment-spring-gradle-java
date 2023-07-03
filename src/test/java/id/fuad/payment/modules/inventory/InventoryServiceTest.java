@@ -1,11 +1,9 @@
 package id.fuad.payment.modules.inventory;
 
 import id.fuad.payment.dto.PaginationDto;
-import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
 import id.fuad.payment.entity.transactional.InventoryEntity;
 import id.fuad.payment.module.inventory.InventoryServiceImpl;
 import id.fuad.payment.module.inventory.dto.InventoryDto;
-import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
 import id.fuad.payment.repository.transactional.InventoryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

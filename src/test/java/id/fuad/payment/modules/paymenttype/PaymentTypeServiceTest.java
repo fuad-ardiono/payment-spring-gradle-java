@@ -2,8 +2,6 @@ package id.fuad.payment.modules.paymenttype;
 
 import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
-import id.fuad.payment.entity.transactional.PaymentEntity;
-import id.fuad.payment.module.paymenttype.PaymentTypeService;
 import id.fuad.payment.module.paymenttype.PaymentTypeServiceImpl;
 import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
 import id.fuad.payment.repository.masterdata.PaymentTypeRepository;

@@ -6,7 +6,6 @@ import id.fuad.payment.dto.PaginationMetaDto;
 import id.fuad.payment.module.inventory.InventoryController;
 import id.fuad.payment.module.inventory.InventoryService;
 import id.fuad.payment.module.inventory.dto.InventoryDto;
-import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

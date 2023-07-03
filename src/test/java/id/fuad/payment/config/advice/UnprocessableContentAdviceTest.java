@@ -3,7 +3,6 @@ package id.fuad.payment.config.advice;
 import id.fuad.payment.config.constant.IssueConstant;
 import id.fuad.payment.dto.BaseResponseDto;
 import id.fuad.payment.dto.MetaResponseDto;
-import id.fuad.payment.exception.NotFoundException;
 import id.fuad.payment.exception.UnprocessableContentException;
 import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
 import id.fuad.payment.utils.base.ValidationBase;
