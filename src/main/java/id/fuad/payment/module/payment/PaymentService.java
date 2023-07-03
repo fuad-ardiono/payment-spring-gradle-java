@@ -16,4 +16,6 @@ public interface PaymentService {
     PaymentDto createPayment(PaymentDto requestData) throws UnprocessableContentException;
 
     PaymentDto updatePayment(Long paymentId, PaymentDto requestData) throws UnprocessableContentException;
+
+    PaymentDto deletePayment(Long paymentId) throws UnprocessableContentException;
 }

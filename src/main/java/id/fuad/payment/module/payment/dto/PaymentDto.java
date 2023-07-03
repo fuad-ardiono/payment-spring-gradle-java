@@ -13,6 +13,9 @@ import java.math.BigInteger;
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentDto {
+    @JsonProperty("payment_id")
+    Long paymentId;
+
     @JsonProperty("amount")
     BigInteger amount;
 

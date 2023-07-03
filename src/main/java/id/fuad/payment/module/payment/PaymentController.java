@@ -3,6 +3,7 @@ package id.fuad.payment.module.payment;
 import id.fuad.payment.dto.BaseResponseDto;
 import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.exception.NotFoundException;
+import id.fuad.payment.exception.UnprocessableContentException;
 import id.fuad.payment.module.payment.dto.PaymentDto;
 import id.fuad.payment.module.payment.dto.PaymentResponseDto;
 import id.fuad.payment.utils.base.ControllerBase;
@@ -25,13 +26,56 @@ public class PaymentController extends ControllerBase {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ) {
-        return response(paymentService.getPaymentPagination(page, pageSize), HttpStatus.OK, "Success get payment list pagination");
+        return response(
+                paymentService.getPaymentPagination(page, pageSize),
+                HttpStatus.OK,
+                "Success get payment list pagination"
+        );
     }
 
     @GetMapping("{id}")
     ResponseEntity<BaseResponseDto<PaymentResponseDto>> getPaymentDetail(
         @PathVariable(name = "id") Long paymentId
     ) throws NotFoundException {
-        return response(paymentService.getPaymentDetail(paymentId), HttpStatus.OK, "Success get detail paymentId", paymentId.toString());
+        return response(
+                paymentService.getPaymentDetail(paymentId),
+                HttpStatus.OK,
+                "Success get detail paymentId",
+                paymentId.toString()
+        );
+    }
+
+    @PostMapping
+    ResponseEntity<BaseResponseDto<PaymentDto>> createPayment(
+            @RequestBody PaymentDto requestData
+    ) throws UnprocessableContentException {
+        return response(
+                paymentService.createPayment(requestData),
+                HttpStatus.CREATED,
+                "Success create payment"
+        );
+    }
+
+    @PutMapping("{id}")
+    ResponseEntity<BaseResponseDto<PaymentDto>> createPayment(
+            @RequestBody PaymentDto requestData,
+            @PathVariable(name = "id") Long paymentId
+    ) throws UnprocessableContentException {
+        return response(
+                paymentService.updatePayment(paymentId, requestData),
+                HttpStatus.OK,
+                "Success update payment"
+        );
+    }
+
+    @DeleteMapping("{id}")
+    ResponseEntity<BaseResponseDto<PaymentDto>> deletePayment(
+            @PathVariable(name = "id") Long paymentId
+    ) throws UnprocessableContentException {
+        return response(
+                paymentService.deletePayment(paymentId),
+                HttpStatus.OK,
+                "Success delete payment"
+        );
     }
 }

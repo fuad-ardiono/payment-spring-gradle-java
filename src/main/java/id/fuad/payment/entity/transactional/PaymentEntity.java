@@ -19,7 +19,7 @@ public class PaymentEntity {
     @Column(name = "amount")
     BigInteger amount;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="payment_type_id", referencedColumnName = "payment_type_id")
     PaymentTypeEntity paymentType;
 

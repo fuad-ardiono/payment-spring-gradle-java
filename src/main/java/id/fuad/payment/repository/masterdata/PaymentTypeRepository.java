@@ -15,4 +15,6 @@ public interface PaymentTypeRepository extends JpaRepository<PaymentTypeEntity, 
             nativeQuery = true
     )
     Page<PaymentTypeEntity> findUsingPageable(Pageable pageable);
+
+    PaymentTypeEntity findFirstById(Long id);
 }
