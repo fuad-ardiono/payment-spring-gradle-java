@@ -23,11 +23,12 @@ public class PaymentController extends ControllerBase {
 
     @GetMapping
     public ResponseEntity<BaseResponseDto<PaginationDto<List<PaymentDto>>>> getPaymentListPagination(
+            @RequestParam(name = "customerId") Long customerId,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ) {
         return response(
-                paymentService.getPaymentPagination(page, pageSize),
+                paymentService.getPaymentPagination(customerId, page, pageSize),
                 HttpStatus.OK,
                 "Success get payment list pagination"
         );

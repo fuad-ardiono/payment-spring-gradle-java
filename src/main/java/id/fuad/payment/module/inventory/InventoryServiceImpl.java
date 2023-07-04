@@ -19,10 +19,10 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public PaginationDto<List<InventoryDto>> getInventoryPagination(Integer page, Integer pageSize) {
-        Page<InventoryEntity> paymentMethodPage = inventoryRepository
+        Page<InventoryEntity> inventoryPagination = inventoryRepository
                 .findUsingPageable(PageRequest.of(page - 1, pageSize));
 
-        List<InventoryDto> listInventoryDto = paymentMethodPage.stream().map(item ->
+        List<InventoryDto> listInventoryDto = inventoryPagination.stream().map(item ->
                 InventoryDto
                         .builder()
                         .id(item.getId())
@@ -35,8 +35,8 @@ public class InventoryServiceImpl implements InventoryService {
         PaginationMetaDto paginationMeta = PaginationMetaDto.builder()
                 .pageSize(pageSize)
                 .page(page)
-                .totalPage(paymentMethodPage.getTotalPages())
-                .totalRecord(paymentMethodPage.getTotalElements())
+                .totalPage(inventoryPagination.getTotalPages())
+                .totalRecord(inventoryPagination.getTotalElements())
                 .build();
 
         return PaginationDto.<List<InventoryDto>>builder()

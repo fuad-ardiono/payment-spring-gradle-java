@@ -14,7 +14,9 @@ CREATE TABLE payment_type (
 	type_name VARCHAR (255) UNIQUE NOT NULL
 );
 
-INSERT INTO payment_type (type_name) SELECT concat('Payment Type - ', left(md5(random()::text), 5)) FROM generate_series(1, 10) s(i);
+INSERT INTO payment_type (type_name)
+    SELECT concat('Payment Type - ', left(md5(random()::text), 5))
+    FROM generate_series(1, 10) s(i);
 
 CREATE TABLE payment (
     payment_id BIGSERIAL PRIMARY KEY,
@@ -25,7 +27,13 @@ CREATE TABLE payment (
     CONSTRAINT fk_payment_type FOREIGN KEY(payment_type_id) REFERENCES payment_type(payment_type_id)
 );
 
-INSERT INTO payment (amount, payment_type_id, customer_id) SELECT random_between(1000, 10000), random_between(1, 10), i FROM generate_series(1, 1000) s(i);
+INSERT INTO payment (amount, payment_type_id, customer_id)
+    SELECT random_between(1000, 10000), random_between(1, 10), i
+    FROM generate_series(1, 1000) s(i);
+
+INSERT INTO payment (amount, payment_type_id, customer_id)
+    SELECT random_between(1000, 10000), random_between(1, 10), 1
+    FROM generate_series(1, 1500000) s(i);
 
 CREATE TABLE inventory (
     item_id BIGSERIAL PRIMARY KEY,

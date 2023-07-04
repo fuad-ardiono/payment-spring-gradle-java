@@ -1,8 +1,11 @@
 package id.fuad.payment.modules.payment;
 
+import id.fuad.payment.dto.PaginationDto;
 import id.fuad.payment.entity.masterdata.PaymentTypeEntity;
+import id.fuad.payment.entity.transactional.InventoryEntity;
 import id.fuad.payment.entity.transactional.PaymentEntity;
 import id.fuad.payment.exception.NotFoundException;
+import id.fuad.payment.module.inventory.dto.InventoryDto;
 import id.fuad.payment.module.payment.PaymentServiceImpl;
 import id.fuad.payment.module.payment.PaymentValidator;
 import id.fuad.payment.module.payment.dto.PaymentDto;
@@ -16,8 +19,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class PaymentServiceTest {
@@ -36,6 +43,36 @@ public class PaymentServiceTest {
     @BeforeEach
     void setup() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testGetPaymentPagination() {
+        Long customerId = 88L;
+
+        List<PaymentEntity> paymentEntityList = new ArrayList<>();
+
+        PaymentTypeEntity paymentTypeEntity = Mockito.mock(PaymentTypeEntity.class);
+
+        PaymentEntity paymentEntityFirst = new PaymentEntity();
+        paymentEntityFirst.setPaymentType(paymentTypeEntity);
+        paymentEntityFirst.setCustomerId(customerId);
+        paymentEntityFirst.setId(100L);
+        paymentEntityFirst.setAmount(new BigInteger("4500"));
+
+
+        paymentEntityList.add(paymentEntityFirst);
+
+        Page<PaymentEntity> pageImpl = new PageImpl<>(paymentEntityList);
+
+        Mockito.when(paymentRepository.findUsingPageable(Mockito.eq(customerId), Mockito.any()))
+                .thenReturn(pageImpl);
+
+        Integer pageSize = 2;
+        Integer page = 1;
+        PaginationDto<List<PaymentDto>> process = service.getPaymentPagination(customerId, page, pageSize);
+
+        Assertions.assertEquals(pageSize, process.getPaginationMeta().getPageSize());
+        Assertions.assertEquals(page, process.getPaginationMeta().getPage());
     }
 
     @Test
@@ -65,9 +102,7 @@ public class PaymentServiceTest {
     void testGetPaymentDetailNull() {
         Mockito.when(paymentRepository.findById(Mockito.any())).thenReturn(Optional.empty());
 
-        NotFoundException exception = Assertions.assertThrows(NotFoundException.class, () -> {
-            service.getPaymentDetail(1L);
-        });
+        NotFoundException exception = Assertions.assertThrows(NotFoundException.class, () -> service.getPaymentDetail(1L));
 
         Assertions.assertEquals("Payment not found", exception.getMessage());
     }

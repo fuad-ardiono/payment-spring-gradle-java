@@ -8,6 +8,7 @@ import id.fuad.payment.module.payment.PaymentService;
 import id.fuad.payment.module.payment.dto.PaymentDto;
 import id.fuad.payment.module.payment.dto.PaymentResponseDto;
 import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,12 +38,14 @@ public class PaymentControllerTest {
 
     @Test
     void testGetListPagination() {
+        Long customerId = 77L;
+
         List<PaymentDto> paymentList = new ArrayList<>();
         paymentList.add(
                 PaymentDto.builder()
                         .paymentId(1L)
                         .paymentTypeId(1L)
-                        .customerId(1L)
+                        .customerId(customerId)
                         .amount(new BigInteger("3000"))
                         .build()
         );
@@ -50,7 +53,7 @@ public class PaymentControllerTest {
                 PaymentDto.builder()
                         .paymentId(1L)
                         .paymentTypeId(1L)
-                        .customerId(1L)
+                        .customerId(customerId)
                         .amount(new BigInteger("4000"))
                         .build()
         );
@@ -67,11 +70,11 @@ public class PaymentControllerTest {
                 .paginationMeta(paginationMetaDto)
                 .build();
 
-        Mockito.when(paymentService.getPaymentPagination(Mockito.eq(2), Mockito.eq(10)))
+        Mockito.when(paymentService.getPaymentPagination(Mockito.eq(customerId), Mockito.eq(2), Mockito.eq(10)))
                 .thenReturn(pagination);
 
         ResponseEntity<BaseResponseDto<PaginationDto<List<PaymentDto>>>> response = paymentController
-                .getPaymentListPagination(2, 10);
+                .getPaymentListPagination(customerId, 2, 10);
 
         Assertions.assertEquals(paginationMetaDto, Objects.requireNonNull(response.getBody()).getData().getPaginationMeta());
         Assertions.assertEquals(paymentList, Objects.requireNonNull(response.getBody()).getData().getPaginationData());
