@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("id.fuad.payment")
 @ComponentScan("id.fuad.payment")
 @EnableJpaRepositories("id.fuad.payment")
-public class DomainConfig { }
+public class DomainConfig {
+}

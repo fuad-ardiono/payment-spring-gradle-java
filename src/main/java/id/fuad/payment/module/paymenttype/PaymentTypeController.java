@@ -23,8 +23,8 @@ public class PaymentTypeController extends ControllerBase {
 
     @GetMapping
     public ResponseEntity<BaseResponseDto<PaginationDto<List<PaymentTypeDto>>>> getPaymentTypeListPagination(
-            @RequestParam(defaultValue = "1", name="page") Integer page,
-            @RequestParam(defaultValue = "10", name="pageSize") Integer pageSize
+            @RequestParam(defaultValue = "1", name = "page") Integer page,
+            @RequestParam(defaultValue = "10", name = "pageSize") Integer pageSize
     ) {
         return response(
                 paymentTypeService.getPaymentTypePagination(page, pageSize),

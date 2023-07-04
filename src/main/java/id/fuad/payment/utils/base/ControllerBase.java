@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 public class ControllerBase {
-    public <T> ResponseEntity<BaseResponseDto<T>> response(T data, HttpStatus httpStatus, String...message) {
+    public <T> ResponseEntity<BaseResponseDto<T>> response(T data, HttpStatus httpStatus, String... message) {
         HttpHeaders header = new HttpHeaders();
         header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 

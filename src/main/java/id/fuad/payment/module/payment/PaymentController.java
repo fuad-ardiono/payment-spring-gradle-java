@@ -22,7 +22,7 @@ public class PaymentController extends ControllerBase {
     PaymentService paymentService;
 
     @GetMapping
-    ResponseEntity<BaseResponseDto<PaginationDto<List<PaymentDto>>>> getPaymentListPagination(
+    public ResponseEntity<BaseResponseDto<PaginationDto<List<PaymentDto>>>> getPaymentListPagination(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ) {
@@ -34,8 +34,8 @@ public class PaymentController extends ControllerBase {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<BaseResponseDto<PaymentResponseDto>> getPaymentDetail(
-        @PathVariable(name = "id") Long paymentId
+    public ResponseEntity<BaseResponseDto<PaymentResponseDto>> getPaymentDetail(
+            @PathVariable(name = "id") Long paymentId
     ) throws NotFoundException {
         return response(
                 paymentService.getPaymentDetail(paymentId),
@@ -46,7 +46,7 @@ public class PaymentController extends ControllerBase {
     }
 
     @PostMapping
-    ResponseEntity<BaseResponseDto<PaymentDto>> createPayment(
+    public ResponseEntity<BaseResponseDto<PaymentDto>> createPayment(
             @RequestBody PaymentDto requestData
     ) throws UnprocessableContentException {
         return response(
@@ -57,7 +57,7 @@ public class PaymentController extends ControllerBase {
     }
 
     @PutMapping("{id}")
-    ResponseEntity<BaseResponseDto<PaymentDto>> createPayment(
+    public ResponseEntity<BaseResponseDto<PaymentDto>> updatePayment(
             @RequestBody PaymentDto requestData,
             @PathVariable(name = "id") Long paymentId
     ) throws UnprocessableContentException {
@@ -69,7 +69,7 @@ public class PaymentController extends ControllerBase {
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<BaseResponseDto<PaymentDto>> deletePayment(
+    public ResponseEntity<BaseResponseDto<PaymentDto>> deletePayment(
             @PathVariable(name = "id") Long paymentId
     ) throws UnprocessableContentException {
         return response(

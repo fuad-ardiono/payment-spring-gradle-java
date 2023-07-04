@@ -42,6 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .build();
 
         return PaymentResponseDto.builder()
+                .id(paymentEntity.getId())
                 .paymentType(paymentTypeDto)
                 .customerId(paymentEntity.getCustomerId())
                 .amount(paymentEntity.getAmount())

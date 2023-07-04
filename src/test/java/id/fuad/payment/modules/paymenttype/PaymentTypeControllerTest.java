@@ -46,9 +46,9 @@ public class PaymentTypeControllerTest {
                 .build();
 
         PaginationDto<List<PaymentTypeDto>> pagination = PaginationDto.<List<PaymentTypeDto>>builder()
-                        .paginationData(paymentTypeList)
-                        .paginationMeta(paginationMetaDto)
-                        .build();
+                .paginationData(paymentTypeList)
+                .paginationMeta(paginationMetaDto)
+                .build();
 
         Mockito.when(paymentTypeService.getPaymentTypePagination(Mockito.eq(2), Mockito.eq(10)))
                 .thenReturn(pagination);
@@ -58,6 +58,8 @@ public class PaymentTypeControllerTest {
 
         Assertions.assertEquals(paginationMetaDto, Objects.requireNonNull(response.getBody()).getData().getPaginationMeta());
         Assertions.assertEquals(paymentTypeList, Objects.requireNonNull(response.getBody()).getData().getPaginationData());
+        Assertions.assertEquals(paymentTypeList.get(0).getType(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getType());
+        Assertions.assertEquals(paymentTypeList.get(0).getId(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getId());
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assertions.assertEquals("Success get payment type list pagination", response.getBody().getMeta().getMessage());
     }

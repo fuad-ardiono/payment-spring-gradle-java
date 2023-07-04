@@ -23,8 +23,8 @@ public class InventoryController extends ControllerBase {
 
     @GetMapping
     public ResponseEntity<BaseResponseDto<PaginationDto<List<InventoryDto>>>> getInventoryListPagination(
-            @RequestParam(defaultValue = "1", name="page") Integer page,
-            @RequestParam(defaultValue = "10", name="pageSize") Integer pageSize
+            @RequestParam(defaultValue = "1", name = "page") Integer page,
+            @RequestParam(defaultValue = "10", name = "pageSize") Integer pageSize
     ) {
         return response(
                 inventoryService.getInventoryPagination(page, pageSize),

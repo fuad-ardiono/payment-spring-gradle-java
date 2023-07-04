@@ -21,7 +21,7 @@ public class PaymentValidator {
     @Autowired
     PaymentRepository paymentRepository;
 
-    void validatePayment(PaymentDto requestData) throws UnprocessableContentException {
+    public void validatePayment(PaymentDto requestData) throws UnprocessableContentException {
         validatePaymentField(requestData);
 
         ValidationBase validationBase = new ValidationBase(new ArrayList<>());
@@ -35,7 +35,7 @@ public class PaymentValidator {
         validationBase.raiseError();
     }
 
-    void validatePayment(Long paymentId, PaymentDto requestData) throws UnprocessableContentException {
+    public void validatePayment(Long paymentId, PaymentDto requestData) throws UnprocessableContentException {
         validatePaymentField(requestData);
 
         ValidationBase validationBase = new ValidationBase(new ArrayList<>());
@@ -55,7 +55,7 @@ public class PaymentValidator {
         validationBase.raiseError();
     }
 
-    void validatePayment(Long paymentId) throws UnprocessableContentException {
+    public void validatePayment(Long paymentId) throws UnprocessableContentException {
         ValidationBase validationBase = new ValidationBase(new ArrayList<>());
 
         boolean payment = paymentRepository.existsById(paymentId);

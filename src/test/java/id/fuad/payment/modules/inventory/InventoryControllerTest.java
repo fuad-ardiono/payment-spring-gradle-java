@@ -59,6 +59,12 @@ public class InventoryControllerTest {
 
         Assertions.assertEquals(paginationMetaDto, Objects.requireNonNull(response.getBody()).getData().getPaginationMeta());
         Assertions.assertEquals(inventoryList, Objects.requireNonNull(response.getBody()).getData().getPaginationData());
+        Assertions.assertEquals(inventoryList.get(0).getId(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getId());
+        Assertions.assertEquals(inventoryList.get(0).getItemName(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getItemName());
+        Assertions.assertEquals(inventoryList.get(0).getQuantity(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getQuantity());
+        Assertions.assertEquals(inventoryList.get(0).getPrice(), Objects.requireNonNull(response.getBody()).getData().getPaginationData().get(0).getPrice());
+        Assertions.assertEquals(paginationMetaDto.getTotalPage(), Objects.requireNonNull(response.getBody()).getData().getPaginationMeta().getTotalPage());
+        Assertions.assertEquals(paginationMetaDto.getTotalRecord(), Objects.requireNonNull(response.getBody()).getData().getPaginationMeta().getTotalRecord());
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assertions.assertEquals("Sucess get inventory list pagination", response.getBody().getMeta().getMessage());
     }

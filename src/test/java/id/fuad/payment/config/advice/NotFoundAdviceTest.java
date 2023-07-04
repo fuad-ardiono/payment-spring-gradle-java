@@ -31,7 +31,7 @@ public class NotFoundAdviceTest {
                 .message("ABC DEFG")
                 .build();
 
-        BaseResponseDto<?> baseResponse= BaseResponseDto.<PaymentTypeDto>builder()
+        BaseResponseDto<?> baseResponse = BaseResponseDto.<PaymentTypeDto>builder()
                 .data(null)
                 .meta(metaResponseDto)
                 .build();

@@ -22,7 +22,7 @@ public class PaymentEntity {
     BigInteger amount;
 
     @OneToOne
-    @JoinColumn(name="payment_type_id", referencedColumnName = "payment_type_id")
+    @JoinColumn(name = "payment_type_id", referencedColumnName = "payment_type_id")
     PaymentTypeEntity paymentType;
 
     @Column(name = "customer_id")

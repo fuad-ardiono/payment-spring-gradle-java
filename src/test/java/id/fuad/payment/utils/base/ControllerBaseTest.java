@@ -37,7 +37,7 @@ public class ControllerBaseTest {
                 .message("ABC DEFG")
                 .build();
 
-        BaseResponseDto<PaymentTypeDto> baseResponse= BaseResponseDto.<PaymentTypeDto>builder()
+        BaseResponseDto<PaymentTypeDto> baseResponse = BaseResponseDto.<PaymentTypeDto>builder()
                 .data(paymentTypeDto)
                 .meta(metaResponseDto)
                 .build();
@@ -61,7 +61,7 @@ public class ControllerBaseTest {
                 .statusCodeText(HttpStatus.OK.getReasonPhrase())
                 .build();
 
-        BaseResponseDto<PaymentTypeDto> baseResponse= BaseResponseDto.<PaymentTypeDto>builder()
+        BaseResponseDto<PaymentTypeDto> baseResponse = BaseResponseDto.<PaymentTypeDto>builder()
                 .data(paymentTypeDto)
                 .meta(metaResponseDto)
                 .build();

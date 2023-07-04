@@ -2,10 +2,10 @@ package id.fuad.payment.config.advice;
 
 import id.fuad.payment.config.constant.IssueConstant;
 import id.fuad.payment.dto.BaseResponseDto;
+import id.fuad.payment.dto.ErrorBagDto;
 import id.fuad.payment.dto.MetaResponseDto;
 import id.fuad.payment.exception.UnprocessableContentException;
 import id.fuad.payment.module.paymenttype.dto.PaymentTypeDto;
-import id.fuad.payment.utils.base.ValidationBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class UnprocessableContentAdviceTest {
                 .errorBag(new ArrayList<>())
                 .build();
 
-        BaseResponseDto<?> baseResponse= BaseResponseDto.<PaymentTypeDto>builder()
+        BaseResponseDto<?> baseResponse = BaseResponseDto.<PaymentTypeDto>builder()
                 .data(null)
                 .meta(metaResponseDto)
                 .build();
@@ -53,22 +53,22 @@ public class UnprocessableContentAdviceTest {
 
     @Test
     void testResponseWithErrorBag() {
-        ValidationBase validationBase = new ValidationBase(new ArrayList<>());
-        validationBase.addErrorField("test", IssueConstant.REQUIRED);
+        ArrayList<ErrorBagDto> errorBag = new ArrayList<>();
+        errorBag.add(ErrorBagDto.builder().field("name").issue(IssueConstant.REQUIRED.name()).build());
 
         MetaResponseDto metaResponseDto = MetaResponseDto.builder()
                 .statusCode(HttpStatus.UNPROCESSABLE_ENTITY.value())
                 .statusCodeText(HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase())
                 .message("Validation failed")
-                .errorBag(validationBase.errorBagDtos())
+                .errorBag(errorBag)
                 .build();
 
-        BaseResponseDto<?> baseResponse= BaseResponseDto.<PaymentTypeDto>builder()
+        BaseResponseDto<?> baseResponse = BaseResponseDto.<PaymentTypeDto>builder()
                 .data(null)
                 .meta(metaResponseDto)
                 .build();
 
-        UnprocessableContentException unprocessableContentException = new UnprocessableContentException(validationBase.errorBagDtos());
+        UnprocessableContentException unprocessableContentException = new UnprocessableContentException(errorBag);
 
         WebRequest request = Mockito.mock(WebRequest.class);
 
