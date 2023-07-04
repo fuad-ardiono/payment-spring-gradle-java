@@ -13,6 +13,14 @@ spring:
         lob:
         non_contextual_creation: true
 
+config:
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6380}
+    password: root
+    database:
+      default: 0
+
 logging:
   level:
     org:

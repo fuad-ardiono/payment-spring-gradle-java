@@ -11,6 +11,16 @@ services:
       - 5431:5432
     networks:
       - assignment
+  redis:
+    image: redis:4.0.14
+    container_name: assignment-redis
+    # have password root
+    command: redis-server --requirepass root
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    networks:
+      - assignment
 networks:
   assignment:
     driver: bridge

@@ -9,7 +9,9 @@ import id.fuad.payment.module.payment.dto.PaymentResponseDto;
 import java.util.List;
 
 public interface PaymentService {
-    PaginationDto<List<PaymentDto>> getPaymentPagination(Long customerId, Integer page, Integer pageSize);
+    PaginationDto<List<PaymentDto>> getPaymentPagination(
+            Long customerId, String typeName, Integer page, Integer pageSize
+    );
 
     PaymentResponseDto getPaymentDetail(Long paymentId) throws NotFoundException;
 
