@@ -22,11 +22,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.Duration;
+import java.util.*;
 
 public class PaymentServiceTest {
     @Mock
@@ -38,12 +38,18 @@ public class PaymentServiceTest {
     @Mock
     PaymentValidator paymentValidator;
 
+    @Mock
+    StringRedisTemplate stringRedisTemplate;
+
     @InjectMocks
     PaymentServiceImpl service;
 
     @BeforeEach
     void setup() {
         MockitoAnnotations.openMocks(this);
+
+        Mockito.when(stringRedisTemplate.keys(Mockito.anyString())).thenReturn(new HashSet<>(Arrays.asList("a:1", "a:2")));
+        Mockito.when(stringRedisTemplate.delete(Mockito.any(String.class))).thenReturn(true);
     }
 
     @Test
