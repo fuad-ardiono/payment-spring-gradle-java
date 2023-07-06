@@ -24,6 +24,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -118,6 +120,9 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentDto createPayment(PaymentDto requestData) throws UnprocessableContentException {
         paymentValidator.validatePayment(requestData);
 
+        Set<String> keys = stringRedisTemplate.keys("payment:list:*");
+        stringRedisTemplate.delete(Objects.requireNonNull(keys));
+
         PaymentTypeEntity paymentType = paymentTypeRepository.findFirstById(requestData.getPaymentTypeId());
 
         PaymentEntity paymentEntity = new PaymentEntity();
@@ -139,6 +144,9 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentDto updatePayment(Long paymentId, PaymentDto requestData) throws UnprocessableContentException {
         paymentValidator.validatePayment(paymentId, requestData);
 
+        Set<String> keys = stringRedisTemplate.keys("payment:list:*");
+        stringRedisTemplate.delete(Objects.requireNonNull(keys));
+
         PaymentEntity payment = paymentRepository.findFirstById(paymentId);
         PaymentTypeEntity paymentType = paymentTypeRepository.findFirstById(requestData.getPaymentTypeId());
 
@@ -159,6 +167,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDto deletePayment(Long paymentId) throws UnprocessableContentException {
         paymentValidator.validatePayment(paymentId);
+
+        Set<String> keys = stringRedisTemplate.keys("payment:list:*");
+        stringRedisTemplate.delete(Objects.requireNonNull(keys));
 
         PaymentEntity payment = paymentRepository.findFirstById(paymentId);
         paymentRepository.delete(payment);
